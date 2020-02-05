@@ -13,17 +13,15 @@ import aleqsei
 ctx = aleqsei.Context()
 ctx.keep_temps = os.getenv("KEEP_AQSIS_TEMPS", "") != ""
 
-(ctx.new_shader("simple_surface")
-    .write
-      (
-        "// A very simple SL surface shader\n"
-        "surface simple_surface() {\n"
-        "  color Cd = noise(10*P);\n"
-        "  Ci = Cd * diffuse(N);\n"
-        "}\n"
-      )
-    .close()
-)
+ctx.compile_shader \
+  (
+    "simple_surface",
+    "// A very simple SL surface shader\n"
+    "surface simple_surface() {\n"
+    "  color Cd = noise(10*P);\n"
+    "  Ci = Cd * diffuse(N);\n"
+    "}\n"
+  )
 
 ri = ctx.new_rib(display = aleqsei.DISPLAY.AUTO)
 with ri.frame_context(1) :
