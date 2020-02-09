@@ -390,6 +390,16 @@ ctx.keep_temps = os.getenv("KEEP_AQSIS_TEMPS", "") != ""
 
 ctx.compile_shader \
   (
+    "background",
+    "light background(float intensity = 1.0)\n"
+    "  {\n"
+    "    solar()\n"
+    "      Cl = intensity;\n"
+    "  } /*background*/\n"
+  )
+
+ctx.compile_shader \
+  (
     "turbulence",  # following example on page 151 of version 3.2 of RenderMan spec.
       # I wouldn’t describe this as a “marble” texture, it looks more
       # like “clouds”.
@@ -418,7 +428,8 @@ ri.shading_rate(1)
 ri.projection("perspective", fov = [30])
 ri.frame_aspect_ratio(3 / 2)
 ri.identity()
-ri.light_source("distantlight", 0, intensity = 1.0)
+ri.light_source("background", 0, intensity = 0.5)
+ri.light_source("distantlight", 1, intensity = 0.5)
 ri.translate(0, 0, 10)
 with ri.world_context() :
     with ri.transform_context() :
