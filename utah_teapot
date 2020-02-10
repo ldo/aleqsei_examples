@@ -423,10 +423,9 @@ ctx.compile_shader \
 
 ri = ctx.new_rib(display = aleqsei.DISPLAY.AUTO)
 
-ri.format(1536, 1024, 1)
+ri.format(640, 512, 1)
 ri.shading_rate(1)
 ri.projection("perspective", fov = [30])
-ri.frame_aspect_ratio(3 / 2)
 ri.identity()
 ri.light_source("background", 0, intensity = 0.5)
 ri.light_source("distantlight", 1, intensity = 0.5)
