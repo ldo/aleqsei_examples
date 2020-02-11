@@ -1,0 +1,29 @@
+#!/usr/bin/python3
+#+
+# Aleqsei example: render the Cornell box. I’m just
+# using the files provided with Aqsis’ own examples,
+# to show how easy it is to do that sort of thing.
+#-
+
+import sys
+import os
+import time
+import aleqsei
+
+ctx = aleqsei.Context()
+ctx.debug = True
+ctx.keep_temps = os.getenv("KEEP_AQSIS_TEMPS", "") != ""
+ctx.set_search_path(aleqsei.SEARCH_TYPE.RESOURCE, "&:/usr/share/aqsis/examples/point_based_gi/cornellbox/")
+
+start_time = time.time()
+ctx.compile_shader_file("ao.sl")
+ctx.compile_shader_file("bake_points.sl")
+ctx.compile_shader_file("indirect.sl")
+sys.stderr.write("shaders compiled in %.3fs\n" % (time.time() - start_time))
+ctx.compile_rib_file("all_passes.rib")
+time_taken = time.time() - start_time
+
+sys.stderr.write("nr images = %d, time_taken = %.3fs\n" % (len(ctx.images), time_taken))
+out = open("%s.png" % os.path.basename(sys.argv[0]), "wb")
+out.write(ctx.images[-1])
+out.close()
