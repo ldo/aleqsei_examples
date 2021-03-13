@@ -360,10 +360,12 @@ patches = \
     ]
 
 # The teapot as usually rendered in fact has the wrong proportions.
-# Jim Blinn divided the z-coordinates by a factor of 1.3 to compensate
-# for the nonuniform pixel density on the display he was using.
-# The following factor restores the original proportions. Change it
-# to 1.0 to display the traditional flattened teapot shape.
+# One story is that Jim Blinn divided the z-coordinates by a factor of
+# 1.3 to compensate for the nonuniform pixel density on the display he
+# was using. Or maybe he just preferred it to look like a genie lamp
+# rather than a regular teapot.
+# The following factor restores the original proportions. Change it to
+# 1.0 to display the traditional flattened teapot shape.
 blinn_correction = 1.3
 
 def teapot(ri) :
