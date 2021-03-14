@@ -7,5 +7,8 @@ script. Thus, to run a script *script* and see its output, you could do somethin
 
 > ./*script* && display *script*.png
 
+Alternatively, you can see the generated output on my [DeviantArt
+account](https://default-cube.deviantart.com/gallery/77602143/alexsei-examples).
+
 Lawrence D'Oliveiro <ldo@geek-central.gen.nz>
-2020 February 5
+2021 March 14
